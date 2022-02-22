@@ -4,7 +4,7 @@ This is a SQL project for my studies, which is analysis about Australia & New Ze
 ## Operational Layer
 The road_crash_schema contains road crash data in Australia and New Zealand. The schema has 6 tables which can be seen in the EER diagram below. The source of the dataset is available on [Kaggle](https://www.kaggle.com/mgray39/australia-new-zealand-road-crash-dataset). However, to speed up the queries for this project,  I cut out some data as professor László suggested. Therefore, if you want to reproduce this project with my SQL statements, please use the adjusted dataset I provided in the dataset folder.
 <p align="center">
-  <img src="https://github.com/xibei-chen/sql_analysis_australia_and_new_zealand_road_crash/blob/main/Term1/eer_diagram.png" />
+  <img src="https://github.com/xibei-chen/sql_analysis_australia_and_new_zealand_road_crash/blob/main/eer_diagram.png" />
 </p>
 
 ## Analytics Plan
@@ -26,7 +26,7 @@ With this data store, I then created views and procedures as datamarts. One data
 ## Analytical layer and ETL pipeline
 The analytical layer was created with a stored procedure, which inner joined all the relevant tables. To increase the query speed, I only selected the data in year 2018 and 2019. Then in return, a new table road_crash was created to work as the analytical layer, aka a denormalized snapshot of the operational tables for road_crash subject as shown below. In addition, an event was also created to call the procedure every minute in the next 1 hour. The purpose is to document the timestamp each time updating table road_crash (it is mainly for practice purpose in this project). Furthermore, a trigger was created to insert a new line into previously created road_crash table the moment an insert is executed into table crash. Both the event and the trigger were tested to make sure they work properly. 
 <p align="center">
-  <img src="https://github.com/xibei-chen/sql_analysis_australia_and_new_zealand_road_crash/blob/main/Term1/data%20_store_fact_dimensions.png" />
+  <img src="https://github.com/xibei-chen/sql_analysis_australia_and_new_zealand_road_crash/blob/main/data%20_store_fact_dimensions.png" />
 </p>
 
 ## Data Marts
